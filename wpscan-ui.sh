@@ -32,8 +32,7 @@ api_file=~/scripts/wpscan_api.key
 # it's just detection, not an option for installation.
 
 if ! [[ $(which wpscan) =~ "wpscan" ]]; then
-	echo An installation of wpscan was not detected on this system. This makes this script basically useless. Please
-	echo install wpscan using your preferred method. After installation, please run this script again.
+	echo An installation of wpscan was not detected on this system. This makes this script basically useless. Please install wpscan using your preferred method. After installation, please run this script again.
 	echo 
 	echo Usage: ./wpscan-ui.sh \[website url\] \(optional\)
 	exit
