@@ -131,8 +131,6 @@ else
 	fi
 fi
 
-# Setup the filename for output
-filename=wpscan-$(date +%F_%H%M%S).txt
 
 format=$(whiptail --title "$script_name | $script_desc $script_year" --radiolist "Format for output" 15 50 4 \
 "cli" "Text (color)" ON \
@@ -142,6 +140,8 @@ if ! [ $? = 0 ]; then
 	exit
 fi
 
+# Setup the filename for output
+filename=wpscan-$(date +%F_%H%M%S).txt
 outputfile=$(whiptail --title "$script_name | $script_desc $script_year" --inputbox "Filename for output" 10 50 $filename 3>&1 1>&2 2>&3)
 if ! [ $? = 0 ]; then
 	exit
