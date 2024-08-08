@@ -24,6 +24,7 @@ script_name=wpscan-ui
 script_desc=JacobFresco.nl
 script_year=2023
 api_file=~/scripts/wpscan_api.key
+output_dir=~/
 
 
 ####### DO NOT EDIT BELOW THIS LINE ########
@@ -39,7 +40,7 @@ fi
 
 # Check if whiptail is installed. Because there are so many installation methods, 
 # it's just detection, not an option for installation.
-if ! [[ ${which whiptail} =~ "whiptail"]]; then
+if ! [[ $(which whiptail) =~ "whiptail" ]]; then
 	echo This script uses whiptail for dialogs. An installation of whiptail was not found. Please install wpscan using your preferred method. After installation, please run this script again.
 	echo 
 	echo Usage: ./wpscan-ui.sh \[website url\] \(optional\)
@@ -164,7 +165,7 @@ if ! [ $? = 0 ]; then
 fi
 
 tmuxps_info=$'\e[34m[Website]\e[0m '$website_url'\e[0m\n\e[34m[API key]\e[0m '$api_key'\n\e[34m[Detection method]\e[0m '$detection'\n\e[34m[Plugin (version) detection]\e[0m '$pdetection'\n\e[34m[Enumeration]\e[0m '$enumeration'\n\e[34m[Format]\e[0m '$format'\n\e[34m[Output]\e[0m '$outputfile'\n\n'
-touch ~/Documents/$outputfile
+touch $output_dir.$outputfile
 	
 clear
 if [[ $tmuxps == "yes" ]] ; then
@@ -191,8 +192,8 @@ else
 
 	# Check if the script is run from within X. If so, open the output file which the default app for that specific file. If not, cat the file in the terminal. 		
 	xhost +si:localuser:$( whoami ) >&/dev/null && { 	
- 		xdg-open ~/Documents/$outputfile &
+ 		xdg-open $outputdir.$outputfile &
 	} || {
-   		cat ~/Documents/$outputfile | more
+   		cat $outputdir.$outputfile | more
    	}
 fi
